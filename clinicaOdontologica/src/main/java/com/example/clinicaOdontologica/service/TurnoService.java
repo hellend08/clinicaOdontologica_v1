@@ -25,16 +25,16 @@ public class TurnoService {
 
     public Turno registrarTurno(Turno turno) {
         // Verify if the related Paciente exists
-        if (turno.getPaciente() == null || turno.getPaciente().getId() == null ||
-                !pacienteRepository.existsById(turno.getPaciente().getId())) {
-            throw new IllegalArgumentException("Paciente not found with the provided ID");
-        }
-
-
-        if (turno.getOdontologo() == null || turno.getOdontologo().getId() == null ||
-                !odontologoRepository.existsById(turno.getOdontologo().getId())) {
-            throw new IllegalArgumentException("Odontologo not found with the provided ID");
-        }
+//        if (turno.getPaciente() == null || turno.getPaciente().getId() == null ||
+//                !pacienteRepository.existsById(turno.getPaciente().getId())) {
+//            throw new IllegalArgumentException("Paciente not found with the provided ID");
+//        }
+//
+//
+//        if (turno.getOdontologo() == null || turno.getOdontologo().getId() == null ||
+//                !odontologoRepository.existsById(turno.getOdontologo().getId())) {
+//            throw new IllegalArgumentException("Odontologo not found with the provided ID");
+//        }
 
         return turnoRepository.save(turno);
     }

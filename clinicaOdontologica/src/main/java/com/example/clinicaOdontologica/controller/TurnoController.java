@@ -1,11 +1,14 @@
 package com.example.clinicaOdontologica.controller;
 
+import com.example.clinicaOdontologica.entity.Odontologo;
+import com.example.clinicaOdontologica.entity.Paciente;
 import com.example.clinicaOdontologica.entity.Turno;
 import com.example.clinicaOdontologica.service.TurnoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import com.example.clinicaOdontologica.service.PacienteService;
+import com.example.clinicaOdontologica.service.OdontologoService;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -17,11 +20,29 @@ public class TurnoController {
     @Autowired
     private TurnoService turnoService;
 
+    @Autowired
+    private PacienteService pacienteService;
+
+    @Autowired
+    private OdontologoService odontologoService;
+
     // Register a new turno
     @PostMapping
     public ResponseEntity<Turno> registrarTurno(@RequestBody Turno turno) {
-        return ResponseEntity.ok(turnoService.registrarTurno(turno));
+        Optional<Paciente> pacienteBuscado = pacienteService.buscarPorId(turno.getPaciente().getId());
+        Optional<Odontologo> odontologoBuscado = odontologoService.buscarPorId(turno.getOdontologo().getId());
+
+        // Check if both Paciente and Odontologo are present
+        if (pacienteBuscado.isPresent() && odontologoBuscado.isPresent()) {
+            // Set the found entities back to the turno object
+            turno.setPaciente(pacienteBuscado.get());
+            turno.setOdontologo(odontologoBuscado.get());
+            return ResponseEntity.ok(turnoService.registrarTurno(turno)); // si el retorno es correcto , seria un 200
+        } else {
+            return ResponseEntity.badRequest().build(); // Return 400 if any entity is not found
+        }
     }
+
 
     // Find all turnos
     @GetMapping
