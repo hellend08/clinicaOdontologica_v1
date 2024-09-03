@@ -1,6 +1,8 @@
 package com.example.clinicaOdontologica.service;
 
 import com.example.clinicaOdontologica.entity.Turno;
+import com.example.clinicaOdontologica.repository.OdontologoRepository;
+import com.example.clinicaOdontologica.repository.PacienteRepository;
 import com.example.clinicaOdontologica.repository.TurnoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,8 +17,25 @@ public class TurnoService {
     @Autowired
     private TurnoRepository turnoRepository;
 
-    // Register a new turno
+    @Autowired
+    private PacienteRepository pacienteRepository;
+
+    @Autowired
+    private OdontologoRepository odontologoRepository;
+
     public Turno registrarTurno(Turno turno) {
+        // Verify if the related Paciente exists
+        if (turno.getPaciente() == null || turno.getPaciente().getId() == null ||
+                !pacienteRepository.existsById(turno.getPaciente().getId())) {
+            throw new IllegalArgumentException("Paciente not found with the provided ID");
+        }
+
+
+        if (turno.getOdontologo() == null || turno.getOdontologo().getId() == null ||
+                !odontologoRepository.existsById(turno.getOdontologo().getId())) {
+            throw new IllegalArgumentException("Odontologo not found with the provided ID");
+        }
+
         return turnoRepository.save(turno);
     }
 
