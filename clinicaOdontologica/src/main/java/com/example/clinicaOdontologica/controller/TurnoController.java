@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+import com.example.clinicaOdontologica.dto.TurnoDto;
+
 
 @RestController
 @RequestMapping("/turnos")
@@ -19,7 +21,7 @@ public class TurnoController {
 
     // Register a new turno
     @PostMapping
-    public ResponseEntity<Turno> registrarTurno(@RequestBody Turno turno) {
+    public ResponseEntity<Turno> registrarTurno(@RequestBody TurnoDto turno) {
         return ResponseEntity.ok(turnoService.registrarTurno(turno));
     }
 

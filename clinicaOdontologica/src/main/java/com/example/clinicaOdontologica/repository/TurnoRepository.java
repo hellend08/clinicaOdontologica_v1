@@ -1,5 +1,6 @@
 package com.example.clinicaOdontologica.repository;
 
+import com.example.clinicaOdontologica.entity.Paciente;
 import com.example.clinicaOdontologica.entity.Turno;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -25,4 +26,7 @@ public interface TurnoRepository extends JpaRepository<Turno, Integer> {
 
     // Custom method to find turnos by fecha (date)
     List<Turno> findByFecha(LocalDate fecha);
+
+
+
 }
