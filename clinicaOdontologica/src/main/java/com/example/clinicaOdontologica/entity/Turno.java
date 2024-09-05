@@ -18,11 +18,11 @@ public class Turno {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne(fetch = FetchType.LAZY) // Many Turnos to One Paciente
+    @ManyToOne(fetch = FetchType.EAGER) // Many Turnos to One Paciente
     @JoinColumn(name = "paciente_id", nullable = false)
     private Paciente paciente;
 
-    @ManyToOne(fetch = FetchType.LAZY) // Many Turnos to One Odontologo
+    @ManyToOne(fetch = FetchType.EAGER) // Many Turnos to One Odontologo
     @JoinColumn(name = "odontologo_id", nullable = false)
     private Odontologo odontologo;
 
