@@ -2,6 +2,7 @@ package com.example.clinicaOdontologica.controller;
 
 import com.example.clinicaOdontologica.entity.Odontologo;
 import com.example.clinicaOdontologica.service.OdontologoService;
+
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,19 +66,31 @@ public class OdontologoController {
     // Find an odontologist by matricula (license number)
     @GetMapping("/buscarPorMatricula/{matricula}")
     public ResponseEntity<Optional<Odontologo>> buscarPorMatricula(@PathVariable String matricula) {
-        return ResponseEntity.ok(odontologoService.buscarPorMatricula(matricula));
+        logger.info("Buscando odontologo con matricula: " + matricula);
+        Optional<Odontologo> odontologoMatricula = odontologoService.buscarPorMatricula(matricula);
+        if (odontologoMatricula.isPresent()) {
+            logger.info("Odontologo encontrado: " + odontologoMatricula.get());
+        } else {
+            logger.warn("No se encontró un odontologo con matricula: " + matricula);
+        }
+        return ResponseEntity.ok(odontologoMatricula);
     }
 
     // Update an existing odontologist
     @PutMapping
     public ResponseEntity<Odontologo> actualizarOdontologo(@RequestBody Odontologo odontologo) {
-        return ResponseEntity.ok(odontologoService.actualizarOdontologo(odontologo));
+        logger.info("Actualizando odontologo: " + odontologo);
+        Odontologo odontologoActualizado = odontologoService.actualizarOdontologo(odontologo);
+        logger.info("Odontologo actualizado exitosamente: " + odontologoActualizado);
+        return ResponseEntity.ok(odontologoActualizado);
     }
 
     // Delete an odontologist by ID
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminarOdontologo(@PathVariable Integer id) {
+        logger.info("Eliminando odontologo con id: " + id);
         odontologoService.eliminarOdontologo(id);
+        logger.info("Odontologo con ID " + id + " eliminado exitosamente.");
         return ResponseEntity.noContent().build();
     }
 }
