@@ -3,6 +3,7 @@ package com.example.clinicaOdontologica.controller;
 import com.example.clinicaOdontologica.entity.Odontologo;
 import com.example.clinicaOdontologica.entity.Paciente;
 import com.example.clinicaOdontologica.entity.Turno;
+import com.example.clinicaOdontologica.exception.ResourceNotFoundException;
 import com.example.clinicaOdontologica.service.TurnoService;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -68,14 +69,11 @@ public class TurnoController {
 
     // Buscar un turno por ID
     @GetMapping("/{id}")
-    public ResponseEntity<Optional<Turno>> buscarPorId(@PathVariable Integer id) {
+    public ResponseEntity<Turno> buscarPorId(@PathVariable Integer id) throws ResourceNotFoundException {
         logger.info("Buscando turnos por ID: " + id);
-        Optional<Turno> turnoId = turnoService.buscarPorId(id);
-        if (turnoId.isPresent()){
-            logger.info("Turno encontrado: " + turnoId.get());
-        } else {
-            logger.warn("No se encontró un turno con ID: " + id);
-        }
+        Turno turnoId = turnoService.buscarPorId(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Turno no encontrado con ID: " + id));
+        logger.info("Turno encontrado: " + turnoId);
         return ResponseEntity.ok(turnoId);
     }
 
@@ -129,8 +127,10 @@ public class TurnoController {
 
     // Eliminando turno por ID
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> eliminarTurno(@PathVariable Integer id) {
+    public ResponseEntity<Void> eliminarTurno(@PathVariable Integer id) throws ResourceNotFoundException {
         logger.info("Eliminando turno por ID: " + id);
+        Turno turno = turnoService.buscarPorId(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Turno no encontrado con ID: " + id));
         turnoService.eliminarTurno(id);
         logger.info("Turno con ID " + id + " eliminado con éxito.");
         return ResponseEntity.noContent().build();
