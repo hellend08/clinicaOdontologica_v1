@@ -52,21 +52,21 @@ public class OdontologoController {
         return ResponseEntity.ok(odontologoEncontrado);
     }
 
-    // Find an odontologist by name
+    // Buscar un odontólogo por nombre
     @GetMapping("/buscarPorNombre/{nombre}")
     public ResponseEntity<Optional<Odontologo>> buscarPorNombre(@PathVariable String nombre) {
-        logger.info("Buscando odontologo con nombre: " + nombre);
+        logger.info("Buscando odontólogo con nombre: " + nombre);
         Optional<Odontologo> odontologoEncontrado = odontologoService.buscarPorNombre(nombre);
         if (odontologoEncontrado.isPresent()) {
-            logger.info("Odontologo encontrado: ");
+            logger.info("Odontólogo encontrado: ");
         }
         return ResponseEntity.ok(odontologoEncontrado);
     }
 
-    // Find an odontologist by matricula (license number)
+    // Buscar odontologo por matrícula (license number)
     @GetMapping("/buscarPorMatricula/{matricula}")
     public ResponseEntity<Optional<Odontologo>> buscarPorMatricula(@PathVariable String matricula) {
-        logger.info("Buscando odontólogo con matricula: " + matricula);
+        logger.info("Buscando odontólogo con matrícula: " + matricula);
         Optional<Odontologo> odontologoMatricula = odontologoService.buscarPorMatricula(matricula);
         if (odontologoMatricula.isPresent()) {
             logger.info("Odontólogo encontrado: " + odontologoMatricula.get());
@@ -76,21 +76,21 @@ public class OdontologoController {
         return ResponseEntity.ok(odontologoMatricula);
     }
 
-    // Update an existing odontologist
+    // Actualizando odontólogo existente
     @PutMapping
     public ResponseEntity<Odontologo> actualizarOdontologo(@RequestBody Odontologo odontologo) {
-        logger.info("Actualizando odontologo: " + odontologo);
+        logger.info("Actualizando odontólogo: " + odontologo);
         Odontologo odontologoActualizado = odontologoService.actualizarOdontologo(odontologo);
-        logger.info("Odontologo actualizado exitosamente: " + odontologoActualizado);
+        logger.info("Odontólogo actualizado exitosamente: " + odontologoActualizado);
         return ResponseEntity.ok(odontologoActualizado);
     }
 
-    // Delete an odontologist by ID
+    // Eliminando odontólogo por ID
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminarOdontologo(@PathVariable Integer id) {
-        logger.info("Eliminando odontologo con id: " + id);
+        logger.info("Eliminando odontólogo con id: " + id);
         odontologoService.eliminarOdontologo(id);
-        logger.info("Odontologo con ID " + id + " eliminado exitosamente.");
+        logger.info("Odontólogo con ID " + id + " eliminado con éxito.");
         return ResponseEntity.noContent().build();
     }
 }
