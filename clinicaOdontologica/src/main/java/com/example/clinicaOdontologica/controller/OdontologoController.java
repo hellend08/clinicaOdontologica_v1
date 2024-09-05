@@ -1,6 +1,7 @@
 package com.example.clinicaOdontologica.controller;
 
 import com.example.clinicaOdontologica.entity.Odontologo;
+import com.example.clinicaOdontologica.exception.ResourceNotFoundException;
 import com.example.clinicaOdontologica.service.OdontologoService;
 
 import org.apache.log4j.LogManager;
@@ -41,15 +42,17 @@ public class OdontologoController {
 
     // Buscando un odontólogo por ID
     @GetMapping("/{id}")
-    public ResponseEntity<Optional<Odontologo>> buscarPorId(@PathVariable Integer id) {
+    public ResponseEntity<Optional<Odontologo>> buscarPorId(@PathVariable Integer id) throws ResourceNotFoundException{
         logger.info("Buscando odontólogo con ID: " + id);
         Optional<Odontologo> odontologoEncontrado = odontologoService.buscarPorId(id);
         if (odontologoEncontrado.isPresent()) {
             logger.info("Odontólogo encontrado: " + odontologoEncontrado.get());
+            return ResponseEntity.ok(odontologoEncontrado);
         } else {
             logger.warn("No se encontró un odontólogo con ID: "+ id);
+            throw new ResourceNotFoundException("Odontólogo no encontrado");
         }
-        return ResponseEntity.ok(odontologoEncontrado);
+        //return ResponseEntity.ok(odontologoEncontrado);
     }
 
     // Buscar un odontólogo por nombre
@@ -87,8 +90,13 @@ public class OdontologoController {
 
     // Eliminando odontólogo por ID
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> eliminarOdontologo(@PathVariable Integer id) {
+    public ResponseEntity<Void> eliminarOdontologo(@PathVariable Integer id) throws ResourceNotFoundException {
         logger.info("Eliminando odontólogo con id: " + id);
+        Optional<Odontologo> odontologoExistente = odontologoService.buscarPorId(id);
+        if (!odontologoExistente.isPresent()) {
+            logger.warn("Odontólogo con ID " + id + " no encontrado.");
+            throw new ResourceNotFoundException("Odontólogo con ID " + id + " no encontrado para eliminar.");
+        }
         odontologoService.eliminarOdontologo(id);
         logger.info("Odontólogo con ID " + id + " eliminado con éxito.");
         return ResponseEntity.noContent().build();
