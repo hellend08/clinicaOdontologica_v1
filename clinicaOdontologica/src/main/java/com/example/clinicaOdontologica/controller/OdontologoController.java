@@ -21,33 +21,33 @@ public class OdontologoController {
 
     private static final Logger logger = LogManager.getLogger(OdontologoController.class);
 
-    // Register a new odontologist
+    // Registrar nuevo odontólogo
     @PostMapping
     public ResponseEntity<Odontologo> registrarOdontologo(@RequestBody Odontologo odontologo) {
-        logger.info("Registrando nuevo odontologo: " + odontologo);
+        logger.info("Registrando nuevo odontólogo: " + odontologo);
         Odontologo odontologoRegistrado = odontologoService.registrarOdontologo(odontologo);
-        logger.info("Odontologo registrado con éxito: " + odontologoRegistrado);
+        logger.info("Odontólogo registrado con éxito: " + odontologoRegistrado);
         return ResponseEntity.ok(odontologoRegistrado);
     }
 
-    // Find all odontologists
+    // Buscar todos los odontólogos
     @GetMapping
     public ResponseEntity<List<Odontologo>> buscarTodos() {
-        logger.info("Buscando todos los odontologos." );
+        logger.info("Buscando todos los odontólogos." );
         List<Odontologo> odontologos = odontologoService.buscarTodos();
-        logger.info("Se encontraron " + odontologos.size() + " odontologos.");
+        logger.info("Se encontraron " + odontologos.size() + " odontólogos.");
         return ResponseEntity.ok(odontologos);
     }
 
-    // Find an odontologist by ID
+    // Buscando un odontólogo por ID
     @GetMapping("/{id}")
     public ResponseEntity<Optional<Odontologo>> buscarPorId(@PathVariable Integer id) {
-        logger.info("Buscando odontologo con ID: " + id);
+        logger.info("Buscando odontólogo con ID: " + id);
         Optional<Odontologo> odontologoEncontrado = odontologoService.buscarPorId(id);
         if (odontologoEncontrado.isPresent()) {
-            logger.info("Odontologo encontrado: " + odontologoEncontrado.get());
+            logger.info("Odontólogo encontrado: " + odontologoEncontrado.get());
         } else {
-            logger.warn("No se encontró un odontologo con ID: "+ id);
+            logger.warn("No se encontró un odontólogo con ID: "+ id);
         }
         return ResponseEntity.ok(odontologoEncontrado);
     }
@@ -66,12 +66,12 @@ public class OdontologoController {
     // Find an odontologist by matricula (license number)
     @GetMapping("/buscarPorMatricula/{matricula}")
     public ResponseEntity<Optional<Odontologo>> buscarPorMatricula(@PathVariable String matricula) {
-        logger.info("Buscando odontologo con matricula: " + matricula);
+        logger.info("Buscando odontólogo con matricula: " + matricula);
         Optional<Odontologo> odontologoMatricula = odontologoService.buscarPorMatricula(matricula);
         if (odontologoMatricula.isPresent()) {
-            logger.info("Odontologo encontrado: " + odontologoMatricula.get());
+            logger.info("Odontólogo encontrado: " + odontologoMatricula.get());
         } else {
-            logger.warn("No se encontró un odontologo con matricula: " + matricula);
+            logger.warn("No se encontró un odontólogo con matrícula: " + matricula);
         }
         return ResponseEntity.ok(odontologoMatricula);
     }
