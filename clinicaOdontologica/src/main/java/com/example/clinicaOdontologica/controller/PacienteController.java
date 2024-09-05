@@ -58,7 +58,7 @@ public class PacienteController {
         logger.info("Buscando paciente con nombre: " + nombre);
         Optional<Paciente> paciente = pacienteService.buscarPorNombre(nombre);
         if (paciente.isPresent()) {
-            logger.info("Paciente encontrado: " + paciente.get());
+            logger.info("Paciente encontrado por nombre: " + paciente.get());
         } else {
             logger.warn("No se encontró paciente con nombre: " + nombre);
         }
@@ -71,7 +71,7 @@ public class PacienteController {
         logger.info("Buscando paciente con email: " + email);
         Optional<Paciente> paciente = pacienteService.buscarPorEmail(email);
         if (paciente.isPresent()) {
-            logger.info("Paciente encontrado: " + paciente.get());
+            logger.info("Paciente encontrado por email: " + paciente.get());
         } else {
             logger.warn("No se encontró paciente con email: " + email);
         }
