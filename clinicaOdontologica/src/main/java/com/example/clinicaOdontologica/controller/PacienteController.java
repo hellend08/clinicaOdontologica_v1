@@ -1,6 +1,7 @@
 package com.example.clinicaOdontologica.controller;
 
 import com.example.clinicaOdontologica.entity.Paciente;
+import com.example.clinicaOdontologica.exception.ResourceNotFoundException;
 import com.example.clinicaOdontologica.service.PacienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -41,15 +42,16 @@ public class PacienteController {
 
     // Buscar un paciente por ID
     @GetMapping("/{id}")
-    public ResponseEntity<Optional<Paciente>> buscarPorId(@PathVariable Integer id) {
+    public ResponseEntity<Optional<Paciente>> buscarPorId(@PathVariable Integer id) throws ResourceNotFoundException {
         logger.info("Buscando paciente con ID: " + id);
         Optional<Paciente> paciente = pacienteService.buscarPorId(id);
         if (paciente.isPresent()) {
             logger.info("Paciente encontrado: " + paciente.get());
+            return ResponseEntity.ok(paciente);
         } else {
             logger.warn("No se encontró paciente con ID: " + id);
+            throw new ResourceNotFoundException("Paciente con ID " + id + " no encontrado");
         }
-        return ResponseEntity.ok(paciente);
     }
 
     // Buscar un paciente por nombre
@@ -89,10 +91,16 @@ public class PacienteController {
 
     // Eliminar un paciente por ID
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> eliminarPaciente(@PathVariable Integer id) {
+    public ResponseEntity<Void> eliminarPaciente(@PathVariable Integer id) throws ResourceNotFoundException {
         logger.info("Eliminando paciente con ID: " + id);
-        pacienteService.eliminarPaciente(id);
-        logger.info("Paciente con ID " + id + " eliminado exitosamente.");
-        return ResponseEntity.noContent().build();
+        Optional<Paciente> paciente = pacienteService.buscarPorId(id);
+        if (paciente.isPresent()) {
+            pacienteService.eliminarPaciente(id);
+            logger.info("Paciente con ID " + id + " eliminado exitosamente.");
+            return ResponseEntity.noContent().build();
+        } else {
+            logger.warn("No se pudo eliminar paciente con ID: " + id + " porque no existe");
+            throw new ResourceNotFoundException("Paciente con ID " + id + " no encontrado para eliminar");
+        }
     }
 }
