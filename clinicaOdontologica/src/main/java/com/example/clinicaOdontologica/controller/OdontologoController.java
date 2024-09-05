@@ -93,12 +93,14 @@ public class OdontologoController {
     public ResponseEntity<Void> eliminarOdontologo(@PathVariable Integer id) throws ResourceNotFoundException {
         logger.info("Eliminando odontólogo con id: " + id);
         Optional<Odontologo> odontologoExistente = odontologoService.buscarPorId(id);
-        if (!odontologoExistente.isPresent()) {
+        if (odontologoExistente.isPresent()) {
+            odontologoService.eliminarOdontologo(id);
+            logger.info("Odontólogo con ID " + id + " eliminado con éxito.");
+            return ResponseEntity.noContent().build();
+        } else {
             logger.warn("Odontólogo con ID " + id + " no encontrado.");
             throw new ResourceNotFoundException("Odontólogo con ID " + id + " no encontrado para eliminar.");
         }
-        odontologoService.eliminarOdontologo(id);
-        logger.info("Odontólogo con ID " + id + " eliminado con éxito.");
-        return ResponseEntity.noContent().build();
+
     }
 }
