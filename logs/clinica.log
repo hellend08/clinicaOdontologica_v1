@@ -1,2 +1,20 @@
 2024-09-05 20:54:16 INFO  [TurnoController] Buscando todos los turnos.
 2024-09-05 20:54:16 INFO  [TurnoController] Se encontraron 0 turnos.
+2024-09-05 21:19:13 INFO  [OdontologoController] Buscando todos los odontólogos.
+2024-09-05 21:19:13 INFO  [OdontologoController] Se encontraron 0 odontólogos.
+2024-09-05 21:19:34 INFO  [OdontologoController] Registrando nuevo odontólogo: com.example.clinicaOdontologica.entity.Odontologo@17b06fe6
+2024-09-05 21:19:34 INFO  [OdontologoController] Odontólogo registrado con éxito: com.example.clinicaOdontologica.entity.Odontologo@4c9112eb
+2024-09-05 21:19:45 INFO  [OdontologoController] Buscando todos los odontólogos.
+2024-09-05 21:19:45 INFO  [OdontologoController] Se encontraron 1 odontólogos.
+2024-09-05 21:20:42 INFO  [TurnoController] Buscando todos los turnos.
+2024-09-05 21:20:42 INFO  [TurnoController] Se encontraron 0 turnos.
+2024-09-05 21:20:53 INFO  [TurnoController] Registrando nuevo turno para Paciente ID 1 y Odontólogo ID 1
+2024-09-05 21:20:53 INFO  [TurnoController] Turno registrado con éxito:com.example.clinicaOdontologica.entity.Turno@226c1c69
+2024-09-05 21:21:07 INFO  [TurnoController] Registrando nuevo turno para Paciente ID 2 y Odontólogo ID 1
+2024-09-05 21:21:07 WARN  [TurnoController] No se encontró el Paciente con ID: 2
+2024-09-05 21:21:24 INFO  [TurnoController] Registrando nuevo turno para Paciente ID 2 y Odontólogo ID 2
+2024-09-05 21:21:24 WARN  [TurnoController] No se encontró el Paciente con ID: 2
+2024-09-05 21:21:52 INFO  [TurnoController] Registrando nuevo turno para Paciente ID 1 y Odontólogo ID 2
+2024-09-05 21:21:52 WARN  [TurnoController] No se encontró el Odontólogo con ID: 2
+2024-09-05 21:22:13 INFO  [TurnoController] Buscando todos los turnos.
+2024-09-05 21:22:13 INFO  [TurnoController] Se encontraron 1 turnos.

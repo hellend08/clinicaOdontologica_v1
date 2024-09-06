@@ -13,4 +13,10 @@ public class GlobalException {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("mensaje: "+rnfe.getMessage());
     }
 
+    // Manejo de BadRequestException
+    @ExceptionHandler({BadRequestException.class})
+    public ResponseEntity<String> tratamientoBadRequest(BadRequestException bre) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Error: " + bre.getMessage());
+    }
+
 }

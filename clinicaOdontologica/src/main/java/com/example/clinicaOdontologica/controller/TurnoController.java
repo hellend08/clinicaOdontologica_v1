@@ -3,6 +3,7 @@ package com.example.clinicaOdontologica.controller;
 import com.example.clinicaOdontologica.entity.Odontologo;
 import com.example.clinicaOdontologica.entity.Paciente;
 import com.example.clinicaOdontologica.entity.Turno;
+import com.example.clinicaOdontologica.exception.BadRequestException;
 import com.example.clinicaOdontologica.exception.ResourceNotFoundException;
 import com.example.clinicaOdontologica.service.TurnoService;
 import org.apache.log4j.LogManager;
@@ -32,7 +33,6 @@ public class TurnoController {
 
     private static final Logger logger = LogManager.getLogger(TurnoController.class);
 
-    // Registrar turno
     @PostMapping
     public ResponseEntity<Turno> registrarTurno(@RequestBody Turno turno) {
         logger.info("Registrando nuevo turno para Paciente ID " + turno.getPaciente().getId() +
@@ -40,23 +40,22 @@ public class TurnoController {
         Optional<Paciente> pacienteBuscado = pacienteService.buscarPorId(turno.getPaciente().getId());
         Optional<Odontologo> odontologoBuscado = odontologoService.buscarPorId(turno.getOdontologo().getId());
 
-        if (pacienteBuscado.isPresent() && odontologoBuscado.isPresent()) {
-            turno.setPaciente(pacienteBuscado.get());
-            turno.setOdontologo(odontologoBuscado.get());
-            Turno turnoRegistrado = turnoService.registrarTurno(turno);
-            logger.info("Turno registrado con éxito:" + turnoRegistrado);
-            return ResponseEntity.ok(turnoRegistrado); // si el retorno es correcto , seria un 200
-        } else {
-            if (!pacienteBuscado.isPresent()) {
-                logger.warn("No se encontró el Paciente con ID: " + turno.getPaciente().getId());
-            }
-            if (!odontologoBuscado.isPresent()) {
-                logger.warn("No se encontró el Odontólogo con ID: " + turno.getOdontologo().getId());
-            }
-            return ResponseEntity.badRequest().build(); // Return 400 if any entity is not found
+        if (!pacienteBuscado.isPresent()) {
+            logger.warn("No se encontró el Paciente con ID: " + turno.getPaciente().getId());
+            throw new BadRequestException("El paciente con ID " + turno.getPaciente().getId() + " no existe.");
         }
-    }
 
+        if (!odontologoBuscado.isPresent()) {
+            logger.warn("No se encontró el Odontólogo con ID: " + turno.getOdontologo().getId());
+            throw new BadRequestException("El odontólogo con ID " + turno.getOdontologo().getId() + " no existe.");
+        }
+
+        turno.setPaciente(pacienteBuscado.get());
+        turno.setOdontologo(odontologoBuscado.get());
+        Turno turnoRegistrado = turnoService.registrarTurno(turno);
+        logger.info("Turno registrado con éxito:" + turnoRegistrado);
+        return ResponseEntity.ok(turnoRegistrado);
+    }
 
     // Buscar todos los turnos
     @GetMapping
