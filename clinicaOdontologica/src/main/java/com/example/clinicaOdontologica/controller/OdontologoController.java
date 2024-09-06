@@ -61,7 +61,7 @@ public class OdontologoController {
         logger.info("Buscando odontólogo con nombre: " + nombre);
         Optional<Odontologo> odontologoEncontrado = odontologoService.buscarPorNombre(nombre);
         if (odontologoEncontrado.isPresent()) {
-            logger.info("Odontólogo encontrado: ");
+            logger.info("Odontólogo encontrado: " + odontologoEncontrado.get());
         }
         return ResponseEntity.ok(odontologoEncontrado);
     }
