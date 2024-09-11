@@ -21,17 +21,23 @@ public class DatosIniciales implements ApplicationRunner {
     private UsuarioRepository usuarioRepository;
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
+
     @Override
     public void run(ApplicationArguments args) throws Exception {
+        // Password to be encoded
         String passSinCifrar = "digitalHouse";
         String passCifrado = passwordEncoder.encode(passSinCifrar);
-        Usuario usuarioAInsertar = new Usuario("Ramon", "ramon99", "admin@admin.com", passCifrado, UsuarioRole.ROLE_USER);
-        usuarioRepository.save(usuarioAInsertar);
-        logger.info("usuario cargado con exito");
 
-        String passSinCifrar2 = "HouseDigital";
-        String passCifrado2 = passwordEncoder.encode(passSinCifrar2);
-        Usuario usuarioAInsertar2 = new Usuario("Helena", "helena89", "admin2@admin.com", passCifrado2, UsuarioRole.ROLE_ADMIN);
-        usuarioRepository.save(usuarioAInsertar2);
-        logger.info("usuario2 cargado con exito");
-    }}
+        // Create and save user with encoded password
+        Usuario usuarioAInsertar = new Usuario(
+                "Ramon",
+                "ramon99",
+                passCifrado, // Encoded password
+                "admin@admin.com",
+                UsuarioRole.ROLE_ADMIN
+        );
+        usuarioRepository.save(usuarioAInsertar);
+
+        logger.info("Usuario cargado con éxito");
+    }
+}
