@@ -2,18 +2,27 @@
 window.addEventListener('load', function () {
     (function(){
 
-      //con fetch invocamos a la API de peliculas con el método GET
-      //nos devolverá un JSON con una colección de peliculas
-      const url = '/odontologo';
+      //con fetch invocamos a la API de odontologos con el método GET
+      //nos devolverá un JSON con una colección de odontologos
+      const url = '/odontologos';
       const settings = {
         method: 'GET'
       }
 
       fetch(url,settings)
-      .then(response => response.json())
-      .then(data => {
+            .then(response => {
+              if (!response.ok) {
+                throw new Error('Error en la respuesta del servidor: ' + response.status);
+              }
+              return response.json();
+            })
+            .then(data => {
+              console.log(data);
+      //.then(response => response.json())
+      //.then(data => {
+      //console.log(data)
       //recorremos la colección de peliculas del JSON
-         for(odontologo of data){
+         for( let odontologo of data){
             //por cada pelicula armaremos una fila de la tabla
             //cada fila tendrá un id que luego nos permitirá borrar la fila si eliminamos la pelicula
             var table = document.getElementById("odontologoTable");

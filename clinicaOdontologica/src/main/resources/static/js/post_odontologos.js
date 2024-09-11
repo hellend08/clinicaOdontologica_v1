@@ -15,9 +15,10 @@ window.addEventListener('load', function () {
             matricula: document.querySelector('#matricula').value,
 
         };
+        console.log(formData);
         //invocamos utilizando la función fetch la API peliculas con el método POST que guardará
         //la película que enviaremos en formato JSON
-        const url = '/odontologo';
+        const url = '/odontologos';
         const settings = {
             method: 'POST',
             headers: {
@@ -29,6 +30,7 @@ window.addEventListener('load', function () {
         fetch(url, settings)
             .then(response => response.json())
             .then(data => {
+            console.log(data);
                  //Si no hay ningun error se muestra un mensaje diciendo que la pelicula
                  //se agrego bien
                  let successAlert = '<div class="alert alert-success alert-dismissible">' +
