@@ -24,4 +24,5 @@ public class UsuarioService implements UserDetailsService {
             throw new UsernameNotFoundException("No existe el usuario: " + username);
         }
     }
+
 }
