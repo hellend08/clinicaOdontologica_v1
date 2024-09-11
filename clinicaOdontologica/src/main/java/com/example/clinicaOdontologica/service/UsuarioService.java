@@ -14,15 +14,14 @@ import java.util.Optional;
 public class UsuarioService implements UserDetailsService {
     @Autowired
     private UsuarioRepository usuarioRepository;
-    @Override
 
+    @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<Usuario> usuarioBuscado = usuarioRepository.findByEmail(username);
-        if(usuarioBuscado.isPresent()){
+        if (usuarioBuscado.isPresent()) {
             return usuarioBuscado.get();
-        }
-        else{
-            throw new UsernameNotFoundException("no existe el usuario :"+username) ;
+        } else {
+            throw new UsernameNotFoundException("No existe el usuario: " + username);
         }
     }
 }

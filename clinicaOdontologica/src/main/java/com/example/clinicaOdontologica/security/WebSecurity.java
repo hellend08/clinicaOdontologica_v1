@@ -18,11 +18,14 @@ import static org.springframework.security.web.util.matcher.AntPathRequestMatche
 @Configuration
 @EnableWebSecurity
 public class WebSecurity {
+
     @Autowired
     private UsuarioService usuarioService;
+
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
-    @Bean //PROVEEDOR DE AUTENTICACIÓN DAO
+
+    @Bean // Authentication Provider
     public DaoAuthenticationProvider daoAuthenticationProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
         provider.setPasswordEncoder(bCryptPasswordEncoder);
@@ -35,15 +38,21 @@ public class WebSecurity {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((authz) -> authz
-                        .requestMatchers(antMatcher(HttpMethod.POST, "/pacientes")).hasRole("ADMIN")
-                        .requestMatchers("/post_pacientes.html").permitAll()
-                        .requestMatchers("/get_odontologos.html").hasRole("ADMIN")
+                        // Admin role: Manage CRUD operations for pacientes and odontologos
+                        .requestMatchers(HttpMethod.POST, "/pacientes", "/odontologos").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT, "/pacientes/**", "/odontologos/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/pacientes/**", "/odontologos/**").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/pacientes", "/odontologos").hasRole("ADMIN")
+
+                        // User role: Create turnos
+                        .requestMatchers(HttpMethod.POST, "/turnos").hasRole("USER")
+
+                        // Any authenticated request
                         .anyRequest().authenticated()
                 )
                 .formLogin(withDefaults())
                 .logout(withDefaults());
         return http.build();
     }
+
 }
-
-
