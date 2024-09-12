@@ -39,14 +39,12 @@ public class WebSecurity {
         http
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((authz) -> authz
-                        // Admin role: Manage CRUD operations for pacientes and odontologos
-                        .requestMatchers(HttpMethod.POST, "/pacientes", "/odontologos").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.PUT, "/pacientes/**", "/odontologos/**").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/pacientes/**", "/odontologos/**").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.GET, "/pacientes", "/odontologos").hasRole("ADMIN")
+                        // Admin role: Access to all CRUD HTML pages for pacientes and odontologos
+                        .requestMatchers("/get_pacientes.html", "/put_pacientes.html", "/post_pacientes.html", "/delete_pacientes.html").hasRole("ADMIN")
+                        .requestMatchers("/get_odontologos.html", "/post_odontologos.html", "/put_odontologos.html", "/delete_odontologos.html").hasRole("ADMIN")
 
-                        // User role: Create turnos
-                        .requestMatchers(HttpMethod.POST, "/turnos").hasRole("USER")
+                        // User role: Access to all CRUD HTML pages for turnos
+                        .requestMatchers("/get_turnos.html", "/post_turnos.html", "/put_turnos.html", "/delete_turnos.html").hasRole("USER")
 
                         // Any authenticated request
                         .anyRequest().authenticated()
