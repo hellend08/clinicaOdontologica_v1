@@ -2,7 +2,7 @@
 window.addEventListener('load', function () {
 
     //Al cargar la pagina buscamos y obtenemos el formulario donde estarán
-    //los datos que el usuario cargará de la nueva pelicula
+    //los datos que el usuario cargará
     const formulario = document.querySelector('#add_new_odontologo');
 
     //Ante un submit del formulario se ejecutará la siguiente funcion

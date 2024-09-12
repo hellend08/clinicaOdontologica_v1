@@ -45,3 +45,7 @@
 2024-09-11 12:45:11 INFO  [OdontologoController] Buscando todos los odontólogos.
 2024-09-11 12:45:11 INFO  [OdontologoController] Se encontraron 0 odontólogos.
 2024-09-11 12:46:54 INFO  [DatosIniciales] Usuario cargado con éxito
+2024-09-11 12:48:15 INFO  [OdontologoController] Registrando nuevo odontólogo: com.example.clinicaOdontologica.entity.Odontologo@40482174
+2024-09-11 12:48:15 INFO  [OdontologoController] Odontólogo registrado con éxito: com.example.clinicaOdontologica.entity.Odontologo@40482174
+2024-09-11 12:48:30 INFO  [OdontologoController] Buscando todos los odontólogos.
+2024-09-11 12:48:30 INFO  [OdontologoController] Se encontraron 1 odontólogos.
