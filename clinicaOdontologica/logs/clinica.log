@@ -49,3 +49,24 @@
 2024-09-11 12:48:15 INFO  [OdontologoController] Odontólogo registrado con éxito: com.example.clinicaOdontologica.entity.Odontologo@40482174
 2024-09-11 12:48:30 INFO  [OdontologoController] Buscando todos los odontólogos.
 2024-09-11 12:48:30 INFO  [OdontologoController] Se encontraron 1 odontólogos.
+2024-09-11 21:05:40 INFO  [DatosIniciales] Usuario cargado con éxito
+2024-09-11 22:18:56 INFO  [OdontologoController] Buscando todos los odontólogos.
+2024-09-11 22:18:56 INFO  [OdontologoController] Se encontraron 0 odontólogos.
+2024-09-11 22:19:10 INFO  [OdontologoController] Buscando todos los odontólogos.
+2024-09-11 22:19:10 INFO  [OdontologoController] Se encontraron 0 odontólogos.
+2024-09-12 00:04:59 INFO  [OdontologoController] Registrando nuevo odontólogo: com.example.clinicaOdontologica.entity.Odontologo@20315fea
+2024-09-12 00:04:59 INFO  [OdontologoController] Odontólogo registrado con éxito: com.example.clinicaOdontologica.entity.Odontologo@20315fea
+2024-09-12 00:05:15 INFO  [OdontologoController] Buscando todos los odontólogos.
+2024-09-12 00:05:15 INFO  [OdontologoController] Se encontraron 1 odontólogos.
+2024-09-12 09:53:41 INFO  [DatosIniciales] Usuario cargado con éxito
+2024-09-12 09:57:22 INFO  [OdontologoController] Buscando todos los odontólogos.
+2024-09-12 09:57:22 INFO  [OdontologoController] Se encontraron 0 odontólogos.
+2024-09-12 09:58:07 INFO  [DatosIniciales] Usuario cargado con éxito
+2024-09-12 10:06:03 INFO  [OdontologoController] Registrando nuevo odontólogo: com.example.clinicaOdontologica.entity.Odontologo@719763f4
+2024-09-12 10:06:03 INFO  [OdontologoController] Odontólogo registrado con éxito: com.example.clinicaOdontologica.entity.Odontologo@719763f4
+2024-09-12 10:06:17 INFO  [OdontologoController] Buscando todos los odontólogos.
+2024-09-12 10:06:17 INFO  [OdontologoController] Se encontraron 1 odontólogos.
+2024-09-12 10:06:23 INFO  [OdontologoController] Eliminando odontólogo con id: 1
+2024-09-12 10:06:23 INFO  [OdontologoController] Odontólogo con ID 1 eliminado con éxito.
+2024-09-12 10:11:21 INFO  [OdontologoController] Buscando todos los odontólogos.
+2024-09-12 10:11:21 INFO  [OdontologoController] Se encontraron 0 odontólogos.
