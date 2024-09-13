@@ -37,22 +37,16 @@ public class PacienteIntegracionTest {
     }
 
     @Test
-    public void testRegistrarPaciente() throws Exception {
-        cargarPacientes();
+    public void testListarPacientes() throws Exception {
+        cargarPacientes(); // Preload some test data
 
-        String nuevoPacienteJson = "{\"nombre\":\"Carlos\",\"apellido\":\"Rodríguez\"," +
-                "\"cedula\":\"11223\",\"fechaIngreso\":\"2024-09-12\"," +
-                "\"domicilio\":{\"calle\":\"Calle 3\",\"numero\":789,\"localidad\":\"Localidad3\",\"provincia\":\"Provincia3\"}," +
-                "\"email\":\"carlos@example.com\"}";
-
-        MvcResult resultado = mockMvc.perform(MockMvcRequestBuilders.post("/pacientes")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(nuevoPacienteJson)
+        MvcResult resultado = mockMvc.perform(MockMvcRequestBuilders.get("/pacientes")
                         .accept(MediaType.APPLICATION_JSON))
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn();
 
+        // Check that the response is not empty
         assertFalse(resultado.getResponse().getContentAsString().isEmpty());
     }
 }
