@@ -31,7 +31,4 @@ public class Odontologo {
     @Column(unique = true, nullable = false)
     private String matricula;
 
-    @OneToMany(mappedBy = "odontologo")
-    @JsonIgnore
-    private List<Turno> turnos = new ArrayList<>();
 }

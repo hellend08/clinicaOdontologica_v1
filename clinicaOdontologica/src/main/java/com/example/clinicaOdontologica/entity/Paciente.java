@@ -40,8 +40,4 @@ public class Paciente {
 
     @Column(unique = true, nullable = false)
     private String email;
-
-    @OneToMany(mappedBy = "paciente")
-    @JsonIgnore
-    private List<Turno> turnos = new ArrayList<>();
 }

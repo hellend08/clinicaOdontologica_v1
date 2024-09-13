@@ -45,3 +45,12 @@
 2024-09-11 12:45:11 INFO  [OdontologoController] Buscando todos los odontólogos.
 2024-09-11 12:45:11 INFO  [OdontologoController] Se encontraron 0 odontólogos.
 2024-09-11 12:46:54 INFO  [DatosIniciales] Usuario cargado con éxito
+2024-09-12 13:07:18 INFO  [DatosIniciales] Usuario cargado con éxito
+2024-09-12 20:50:12 INFO  [DatosIniciales] Usuario cargado con éxito
+2024-09-12 20:50:14 INFO  [TurnoController] Buscando todos los turnos.
+2024-09-12 20:50:14 INFO  [TurnoController] Se encontraron 2 turnos.
+2024-09-12 20:57:03 INFO  [DatosIniciales] Usuario cargado con éxito
+2024-09-12 20:57:04 INFO  [OdontologoController] Registrando nuevo odontólogo: com.example.clinicaOdontologica.entity.Odontologo@2db27b46
+2024-09-12 20:57:04 INFO  [OdontologoController] Odontólogo registrado con éxito: com.example.clinicaOdontologica.entity.Odontologo@2db27b46
+2024-09-12 21:00:34 INFO  [DatosIniciales] Usuario cargado con éxito
+2024-09-12 21:04:44 INFO  [DatosIniciales] Usuario cargado con éxito
