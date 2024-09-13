@@ -56,3 +56,10 @@
 2024-09-12 21:04:44 INFO  [DatosIniciales] Usuario cargado con éxito
 2024-09-12 21:08:56 INFO  [DatosIniciales] Usuario cargado con éxito
 2024-09-12 21:19:07 INFO  [DatosIniciales] Usuario cargado con éxito
+2024-09-12 21:25:10 INFO  [DatosIniciales] Usuario cargado con éxito
+2024-09-12 21:25:12 INFO  [OdontologoController] Registrando nuevo odontólogo: com.example.clinicaOdontologica.entity.Odontologo@21cb907d
+2024-09-12 21:25:12 INFO  [OdontologoController] Odontólogo registrado con éxito: com.example.clinicaOdontologica.entity.Odontologo@21cb907d
+2024-09-12 21:27:58 INFO  [DatosIniciales] Usuario cargado con éxito
+2024-09-12 21:27:59 INFO  [TurnoController] Buscando todos los turnos.
+2024-09-12 21:27:59 INFO  [TurnoController] Se encontraron 2 turnos.
+2024-09-12 21:29:38 INFO  [DatosIniciales] Usuario cargado con éxito
