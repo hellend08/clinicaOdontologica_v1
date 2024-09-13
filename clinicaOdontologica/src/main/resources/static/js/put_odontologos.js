@@ -4,14 +4,14 @@ window.addEventListener('load', function () {
     formulario.addEventListener('submit', function (event) {
         event.preventDefault();
 
+        const id = document.querySelector('#id').value;  // Get the ID value
         const formData = {
-            id: document.querySelector('#id').value,
             nombre: document.querySelector('#nombre').value,
             apellido: document.querySelector('#apellido').value,
             matricula: document.querySelector('#matricula').value,
         };
 
-        const url = '/odontologos';
+        const url = `/odontologos/${id}`;  // Use the ID in the URL path
         const settings = {
             method: 'PUT',
             headers: {
@@ -25,7 +25,7 @@ window.addEventListener('load', function () {
             .then(data => {
                 let successAlert = '<div class="alert alert-success alert-dismissible">' +
                     '<button type="button" class="close" data-dismiss="alert">&times;</button>' +
-                    '<strong>Odontologo actualizado exitosamente</strong> </div>';
+                    '<strong>Odontólogo actualizado exitosamente</strong> </div>';
 
                 document.querySelector('#response').innerHTML = successAlert;
                 document.querySelector('#response').style.display = "block";
@@ -34,7 +34,7 @@ window.addEventListener('load', function () {
             .catch(error => {
                 let errorAlert = '<div class="alert alert-danger alert-dismissible">' +
                     '<button type="button" class="close" data-dismiss="alert">&times;</button>' +
-                    '<strong>Error al actualizar el odontologo</strong> </div>';
+                    '<strong>Error al actualizar el odontólogo</strong> </div>';
 
                 document.querySelector('#response').innerHTML = errorAlert;
                 document.querySelector('#response').style.display = "block";

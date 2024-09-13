@@ -88,3 +88,18 @@
 2024-09-12 22:39:50 INFO  [DatosIniciales] Usuario cargado con éxito
 2024-09-12 22:48:12 INFO  [DatosIniciales] Usuario cargado con éxito
 2024-09-12 23:33:12 INFO  [DatosIniciales] Usuario cargado con éxito
+2024-09-12 23:42:15 INFO  [DatosIniciales] Usuario cargado con éxito
+2024-09-12 23:42:40 INFO  [OdontologoController] Registrando nuevo odontólogo: com.example.clinicaOdontologica.entity.Odontologo@7d08ed9e
+2024-09-12 23:42:40 INFO  [OdontologoController] Odontólogo registrado con éxito: com.example.clinicaOdontologica.entity.Odontologo@7d08ed9e
+2024-09-12 23:42:54 INFO  [OdontologoController] Actualizando odontólogo con ID: 1
+2024-09-12 23:42:54 INFO  [OdontologoController] Odontólogo actualizado exitosamente: com.example.clinicaOdontologica.entity.Odontologo@58694449
+2024-09-12 23:43:01 INFO  [OdontologoController] Buscando todos los odontólogos.
+2024-09-12 23:43:01 INFO  [OdontologoController] Se encontraron 1 odontólogos.
+2024-09-12 23:43:17 INFO  [OdontologoController] Registrando nuevo odontólogo: com.example.clinicaOdontologica.entity.Odontologo@7da3d190
+2024-09-12 23:43:17 INFO  [OdontologoController] Odontólogo registrado con éxito: com.example.clinicaOdontologica.entity.Odontologo@7da3d190
+2024-09-12 23:43:24 INFO  [OdontologoController] Buscando todos los odontólogos.
+2024-09-12 23:43:24 INFO  [OdontologoController] Se encontraron 2 odontólogos.
+2024-09-12 23:43:35 INFO  [OdontologoController] Actualizando odontólogo con ID: 2
+2024-09-12 23:43:35 INFO  [OdontologoController] Odontólogo actualizado exitosamente: com.example.clinicaOdontologica.entity.Odontologo@2f24bb9
+2024-09-12 23:43:46 INFO  [OdontologoController] Buscando todos los odontólogos.
+2024-09-12 23:43:46 INFO  [OdontologoController] Se encontraron 2 odontólogos.
