@@ -1,4 +1,5 @@
 window.addEventListener('load', function () {
+
     const formulario = document.querySelector('#update_paciente');
 
     formulario.addEventListener('submit', function (event) {
