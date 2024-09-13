@@ -4,10 +4,15 @@
     <meta charset="UTF-8">
     <title>Modificar Turno</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- Popper.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <!-- Bootstrap JS -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <!-- JavaScript personalizado -->
     <script type="text/javascript" src="/js/put_turnos.js"></script>
 </head>
 <body>
@@ -60,19 +65,19 @@
             <form id="update_turno_form">
                 <div class="form-group">
                     <label for="turno_id">ID:</label>
-                    <input type="text" class="form-control" id="turno_id" readonly>
+                    <input type="text" class="form-control" id="turno_id" name="turno_id" required>
                 </div>
                 <div class="form-group">
                     <label class="control-label" for="fecha">Fecha:</label>
-                    <input type="date" class="form-control" id="fecha" name="fecha" required></input>
+                    <input type="date" class="form-control" id="fecha" name="fecha" required>
                 </div>
                 <div class="form-group">
                     <label class="control-label" for="pacienteId">ID del Paciente:</label>
-                    <input type="number" class="form-control" id="pacienteId" name="pacienteId" required></input>
+                    <input type="number" class="form-control" id="pacienteId" name="pacienteId" required>
                 </div>
                 <div class="form-group">
                     <label class="control-label" for="odontologoId">ID del Odontólogo:</label>
-                    <input type="number" class="form-control" id="odontologoId" name="odontologoId" required></input>
+                    <input type="number" class="form-control" id="odontologoId" name="odontologoId" required>
                 </div>
                 <button type="submit" class="btn btn-primary">Modificar</button>
             </form>

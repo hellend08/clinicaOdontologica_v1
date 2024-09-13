@@ -115,14 +115,28 @@ public class TurnoController {
         return ResponseEntity.ok(turnoFecha);
     }
 
-    // Actualizando turno existente
-    @PutMapping
-    public ResponseEntity<Turno> actualizarTurno(@RequestBody Turno turno) {
-        logger.info("Actualizando turno: " + turno);
+    @PutMapping("/{id}")
+    public ResponseEntity<Turno> actualizarTurno(@PathVariable("id") Integer id, @RequestBody Turno turno) {
+        logger.info("Actualizando turno con ID: " + id);
+
+        if (turno.getId() == null || !turno.getId().equals(id)) {
+            logger.error("ID del turno en el cuerpo del request no coincide con el ID en la URL.");
+            return ResponseEntity.badRequest().build();
+        }
+
+        Optional<Turno> turnoExistente = turnoService.buscarPorId(id);
+
+        if (turnoExistente.isEmpty()) {
+            logger.warn("Turno con ID " + id + " no encontrado.");
+            return ResponseEntity.notFound().build();
+        }
+
         Turno turnoActualizado = turnoService.actualizarTurno(turno);
         logger.info("Turno actualizado con éxito: " + turnoActualizado);
         return ResponseEntity.ok(turnoActualizado);
     }
+
+
 
     // Eliminando turno por ID
     @DeleteMapping("/{id}")
