@@ -79,10 +79,14 @@ public class OdontologoController {
         return ResponseEntity.ok(odontologoMatricula);
     }
 
-    // Actualizando odontólogo existente
-    @PutMapping
-    public ResponseEntity<Odontologo> actualizarOdontologo(@RequestBody Odontologo odontologo) {
-        logger.info("Actualizando odontólogo: " + odontologo);
+    // Updating an existing dentist by ID
+    @PutMapping("/{id}")
+    public ResponseEntity<Odontologo> actualizarOdontologo(@PathVariable Integer id, @RequestBody Odontologo odontologo) {
+        logger.info("Actualizando odontólogo con ID: " + id);
+
+        // Set the ID from the path variable to the odontologo object
+        odontologo.setId(id);
+
         Odontologo odontologoActualizado = odontologoService.actualizarOdontologo(odontologo);
         logger.info("Odontólogo actualizado exitosamente: " + odontologoActualizado);
         return ResponseEntity.ok(odontologoActualizado);

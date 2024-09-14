@@ -1,5 +1,5 @@
-function deleteOd(id) {
-    const url = `/odontologos/${id}`;
+function deleteTur(id) {
+    const url = `/turnos/${id}`;
     const settings = {
         method: 'DELETE'
     };
@@ -7,14 +7,14 @@ function deleteOd(id) {
     fetch(url, settings)
         .then(response => {
             if (!response.ok) {
-                throw new Error('Error al eliminar odontólogo: ' + response.status);
+                throw new Error('Error al eliminar turno: ' + response.status);
             }
-            alert('Odontólogo eliminado correctamente');
+            alert('Turno eliminado correctamente');
             removeRow(id);
         })
         .catch(error => {
-            console.error('Error al eliminar odontólogo:', error);
-            alert('Ocurrió un error al intentar eliminar el odontólogo');
+            console.error('Error al eliminar turno:', error);
+            alert('Ocurrió un error al intentar eliminar el turno');
         });
 }
 

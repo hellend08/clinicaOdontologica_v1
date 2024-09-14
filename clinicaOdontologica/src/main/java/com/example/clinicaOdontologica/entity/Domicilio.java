@@ -33,7 +33,6 @@ public class Domicilio {
     @Column(nullable = false)
     private String provincia;
 
-    @OneToMany(mappedBy = "domicilio")
-    @JsonIgnore
-    private List<Paciente> pacientes = new ArrayList<>();
+
+
 }

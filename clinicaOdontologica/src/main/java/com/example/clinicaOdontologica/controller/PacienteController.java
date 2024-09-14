@@ -81,13 +81,26 @@ public class PacienteController {
     }
 
     // Actualizar un paciente existente
-    @PutMapping
-    public ResponseEntity<Paciente> actualizarPaciente(@RequestBody Paciente paciente) {
-        logger.info("Actualizando paciente: " + paciente);
+    @PutMapping("/{id}")
+    public ResponseEntity<Paciente> actualizarPaciente(@PathVariable Integer id, @RequestBody Paciente paciente) throws ResourceNotFoundException {
+        logger.info("Actualizando paciente con ID: " + id);
+
+        // Check if the patient exists
+        Optional<Paciente> existingPaciente = pacienteService.buscarPorId(id);
+        if (!existingPaciente.isPresent()) {
+            logger.warn("No se encontró paciente con ID: " + id + " para actualizar.");
+            throw new ResourceNotFoundException("Paciente con ID " + id + " no encontrado para actualizar.");
+        }
+
+        // Set the ID to the provided one in the path variable
+        paciente.setId(id);
+
+        // Update the patient
         Paciente pacienteActualizado = pacienteService.actualizarPaciente(paciente);
         logger.info("Paciente actualizado exitosamente: " + pacienteActualizado);
         return ResponseEntity.ok(pacienteActualizado);
     }
+
 
     // Eliminar un paciente por ID
     @DeleteMapping("/{id}")

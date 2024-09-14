@@ -42,7 +42,7 @@ public class WebSecurity {
                         // Admin role: Access to all CRUD HTML pages for pacientes and odontologos
                         .requestMatchers("/get_pacientes.html", "/put_pacientes.html", "/post_pacientes.html", "/delete_pacientes.html").hasRole("ADMIN")
                         .requestMatchers("/get_odontologos.html", "/post_odontologos.html", "/put_odontologos.html", "/delete_odontologos.html").hasRole("ADMIN")
-                        .requestMatchers("/get_turnos.html", "/post_turnos.html", "/put_turnos.html", "/delete_turnos.html").hasRole("ADMIN")
+                        //.requestMatchers("/get_turnos.html", "/post_turnos.html", "/put_turnos.html", "/delete_turnos.html").hasRole("ADMIN")
 
                         // User role: Access to all CRUD HTML pages for turnos
                         .requestMatchers("/get_turnos.html", "/post_turnos.html", "/put_turnos.html", "/delete_turnos.html").hasRole("USER")
