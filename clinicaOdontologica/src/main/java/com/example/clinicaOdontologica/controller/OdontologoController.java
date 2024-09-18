@@ -4,6 +4,9 @@ import com.example.clinicaOdontologica.entity.Odontologo;
 import com.example.clinicaOdontologica.exception.ResourceNotFoundException;
 import com.example.clinicaOdontologica.service.OdontologoService;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +26,12 @@ public class OdontologoController {
     private static final Logger logger = LogManager.getLogger(OdontologoController.class);
 
     // Registrar nuevo odontólogo
+    @Operation(summary = "Registrar nuevo odontólogo")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Odontólogo registrado con éxito"),
+            @ApiResponse(responseCode = "400", description = "Datos de odontólogo inválidos"),
+            @ApiResponse(responseCode = "500", description = "Error interno del servidor")
+    })
     @PostMapping
     public ResponseEntity<Odontologo> registrarOdontologo(@RequestBody Odontologo odontologo) {
         logger.info("Registrando nuevo odontólogo: " + odontologo);
@@ -32,6 +41,12 @@ public class OdontologoController {
     }
 
     // Buscar todos los odontólogos
+    @Operation(summary = "Buscar todos los odontólogos")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Lista de odontólogos encontrada"),
+            @ApiResponse(responseCode = "204", description = "No se encontraron odontólogos"),
+            @ApiResponse(responseCode = "500", description = "Error interno del servidor")
+    })
     @GetMapping
     public ResponseEntity<List<Odontologo>> buscarTodos() {
         logger.info("Buscando todos los odontólogos." );
@@ -41,6 +56,12 @@ public class OdontologoController {
     }
 
     // Buscando un odontólogo por ID
+    @Operation(summary = "Buscar un odontólogo por ID")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Odontólogo encontrado"),
+            @ApiResponse(responseCode = "404", description = "Odontólogo no encontrado"),
+            @ApiResponse(responseCode = "500", description = "Error interno del servidor")
+    })
     @GetMapping("/{id}")
     public ResponseEntity<Optional<Odontologo>> buscarPorId(@PathVariable Integer id) throws ResourceNotFoundException{
         logger.info("Buscando odontólogo con ID: " + id);
@@ -56,6 +77,12 @@ public class OdontologoController {
     }
 
     // Buscar un odontólogo por nombre
+    @Operation(summary = "Buscar un odontólogo por nombre")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Odontólogo encontrado"),
+            @ApiResponse(responseCode = "404", description = "Odontólogo no encontrado"),
+            @ApiResponse(responseCode = "500", description = "Error interno del servidor")
+    })
     @GetMapping("/buscarPorNombre/{nombre}")
     public ResponseEntity<Optional<Odontologo>> buscarPorNombre(@PathVariable String nombre) {
         logger.info("Buscando odontólogo con nombre: " + nombre);
@@ -67,6 +94,12 @@ public class OdontologoController {
     }
 
     // Buscar odontologo por matrícula (license number)
+    @Operation(summary = "Buscar odontólogo por matrícula")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Odontólogo encontrado"),
+            @ApiResponse(responseCode = "404", description = "Odontólogo no encontrado"),
+            @ApiResponse(responseCode = "500", description = "Error interno del servidor")
+    })
     @GetMapping("/buscarPorMatricula/{matricula}")
     public ResponseEntity<Optional<Odontologo>> buscarPorMatricula(@PathVariable String matricula) {
         logger.info("Buscando odontólogo con matrícula: " + matricula);
@@ -80,6 +113,13 @@ public class OdontologoController {
     }
 
     // Updating an existing dentist by ID
+    @Operation(summary = "Actualizar un odontólogo existente")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Odontólogo actualizado con éxito"),
+            @ApiResponse(responseCode = "404", description = "Odontólogo no encontrado"),
+            @ApiResponse(responseCode = "400", description = "Datos de odontólogo inválidos"),
+            @ApiResponse(responseCode = "500", description = "Error interno del servidor")
+    })
     @PutMapping("/{id}")
     public ResponseEntity<Odontologo> actualizarOdontologo(@PathVariable Integer id, @RequestBody Odontologo odontologo) {
         logger.info("Actualizando odontólogo con ID: " + id);
@@ -93,6 +133,12 @@ public class OdontologoController {
     }
 
     // Eliminando odontólogo por ID
+    @Operation(summary = "Eliminar odontólogo por ID")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204", description = "Odontólogo eliminado con éxito"),
+            @ApiResponse(responseCode = "404", description = "Odontólogo no encontrado"),
+            @ApiResponse(responseCode = "500", description = "Error interno del servidor")
+    })
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminarOdontologo(@PathVariable Integer id) throws ResourceNotFoundException {
         logger.info("Eliminando odontólogo con id: " + id);

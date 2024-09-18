@@ -6,6 +6,9 @@ import com.example.clinicaOdontologica.entity.Turno;
 import com.example.clinicaOdontologica.exception.BadRequestException;
 import com.example.clinicaOdontologica.exception.ResourceNotFoundException;
 import com.example.clinicaOdontologica.service.TurnoService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +36,12 @@ public class TurnoController {
 
     private static final Logger logger = LogManager.getLogger(TurnoController.class);
 
+    @Operation(summary = "Registrar un nuevo turno")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Turno registrado con éxito"),
+            @ApiResponse(responseCode = "400", description = "Datos de turno inválidos o paciente/odontólogo no encontrado"),
+            @ApiResponse(responseCode = "500", description = "Error interno del servidor")
+    })
     @PostMapping
     public ResponseEntity<Turno> registrarTurno(@RequestBody Turno turno) {
         logger.info("Registrando nuevo turno para Paciente ID " + turno.getPaciente().getId() +
@@ -58,6 +67,12 @@ public class TurnoController {
     }
 
     // Buscar todos los turnos
+    @Operation(summary = "Buscar todos los turnos")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Lista de turnos encontrada"),
+            @ApiResponse(responseCode = "204", description = "No se encontraron turnos"),
+            @ApiResponse(responseCode = "500", description = "Error interno del servidor")
+    })
     @GetMapping
     public ResponseEntity<List<Turno>> buscarTodos() {
         logger.info("Buscando todos los turnos.");
@@ -67,6 +82,12 @@ public class TurnoController {
     }
 
     // Buscar un turno por ID
+    @Operation(summary = "Buscar un turno por ID")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Turno encontrado"),
+            @ApiResponse(responseCode = "404", description = "Turno no encontrado"),
+            @ApiResponse(responseCode = "500", description = "Error interno del servidor")
+    })
     @GetMapping("/{id}")
     public ResponseEntity<Turno> buscarPorId(@PathVariable Integer id) throws ResourceNotFoundException {
         logger.info("Buscando turnos por ID: " + id);
@@ -77,6 +98,12 @@ public class TurnoController {
     }
 
     // Buscar turnos por paciente ID
+    @Operation(summary = "Buscar turnos por paciente ID")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Lista de turnos encontrada"),
+            @ApiResponse(responseCode = "204", description = "No se encontraron turnos para el paciente"),
+            @ApiResponse(responseCode = "500", description = "Error interno del servidor")
+    })
     @GetMapping("/paciente/{pacienteId}")
     public ResponseEntity<List<Turno>> buscarPorPacienteId(@PathVariable Integer pacienteId) {
         logger.info("Buscando turnos por Paciente ID: " + pacienteId);
@@ -90,6 +117,12 @@ public class TurnoController {
     }
 
     // Buscar turnos por odontóogo ID
+    @Operation(summary = "Buscar turnos por odontólogo ID")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Lista de turnos encontrada"),
+            @ApiResponse(responseCode = "204", description = "No se encontraron turnos para el odontólogo"),
+            @ApiResponse(responseCode = "500", description = "Error interno del servidor")
+    })
     @GetMapping("/odontologo/{odontologoId}")
     public ResponseEntity<List<Turno>> buscarPorOdontologoId(@PathVariable Integer odontologoId) {
         logger.info("Buscando turnos por Odontólogo ID: " + odontologoId);
@@ -103,6 +136,12 @@ public class TurnoController {
     }
 
     // Buscar turnos por fecha
+    @Operation(summary = "Buscar turnos por fecha")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Lista de turnos encontrada"),
+            @ApiResponse(responseCode = "204", description = "No se encontraron turnos en esa fecha"),
+            @ApiResponse(responseCode = "500", description = "Error interno del servidor")
+    })
     @GetMapping("/fecha/{fecha}")
     public ResponseEntity<List<Turno>> buscarPorFecha(@PathVariable LocalDate fecha) {
         logger.info("Buscando turnos por fecha: " + fecha);
@@ -115,6 +154,13 @@ public class TurnoController {
         return ResponseEntity.ok(turnoFecha);
     }
 
+    @Operation(summary = "Actualizar un turno por ID")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Turno actualizado con éxito"),
+            @ApiResponse(responseCode = "400", description = "ID del turno no coincide con el cuerpo de la solicitud"),
+            @ApiResponse(responseCode = "404", description = "Turno no encontrado"),
+            @ApiResponse(responseCode = "500", description = "Error interno del servidor")
+    })
     @PutMapping("/{id}")
     public ResponseEntity<Turno> actualizarTurno(@PathVariable("id") Integer id, @RequestBody Turno turno) {
         logger.info("Actualizando turno con ID: " + id);
@@ -139,6 +185,12 @@ public class TurnoController {
 
 
     // Eliminando turno por ID
+    @Operation(summary = "Eliminar un turno por ID")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "204", description = "Turno eliminado con éxito"),
+            @ApiResponse(responseCode = "404", description = "Turno no encontrado"),
+            @ApiResponse(responseCode = "500", description = "Error interno del servidor")
+    })
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminarTurno(@PathVariable Integer id) throws ResourceNotFoundException {
         logger.info("Eliminando turno por ID: " + id);
